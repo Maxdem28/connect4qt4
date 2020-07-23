@@ -1,12 +1,15 @@
+# -*- coding: UTF-8 -*-
+
 import sys
 from PyQt4 import QtGui, QtCore
 from classi import *
+
 class Main_window(QtGui.QMainWindow):
 	grid_values = []
-	width = 6
-	height = 7
+	width = width
+	height = height
 	winning_paths = []
-	winning_limit = 4
+	winning_limit = 4 ##the bot works only with 4 as winning_limit
 	bottoni = []
 	spostamenti = []
 	giocatore = 1
@@ -44,32 +47,28 @@ class Main_window(QtGui.QMainWindow):
 		self.pulsanti.addLayout(self.grid)
 		cwidget.setLayout(self.pulsanti)
 		self.setCentralWidget(cwidget)
-		
-
-
-
 
 	def vittoriePossibili(self):
-		for i in range(self.width-self.winning_limit):
+		for i in range(self.width-self.winning_limit+1):
 			for j in range(self.height):
 				result = []
 				for k in range(self.winning_limit):
 					result.append(self.grid_values[i+k][j])
 				self.winning_paths.append(result)
 		for i in range(self.width):
-			for j in range(self.height-self.winning_limit):
+			for j in range(self.height-self.winning_limit+1):
 				result = []
 				for k in range(self.winning_limit):
-					result.append(self.grid_values[i][j+k+1])
+					result.append(self.grid_values[i][j+k])
 				self.winning_paths.append(result)
-		for i in range(self.width-self.winning_limit):
+		for i in range(self.width-self.winning_limit+1):
 			for j in range(self.height-self.winning_limit):
 				result = []
 				for k in range(self.winning_limit):
 					result.append(self.grid_values[i+k][j+k])
 				self.winning_paths.append(result)
 		for i in range(self.winning_limit, self.width):
-			for j in range(self.height-self.winning_limit):
+			for j in range(self.height-self.winning_limit+1):
 				result = []
 				for k in range(self.winning_limit):
 					result.append(self.grid_values[i-k][j+k])
@@ -84,6 +83,7 @@ class Main_window(QtGui.QMainWindow):
 					print("\n"*5 + str(i) + " " + str(j))
 					'''
 		for i in self.winning_paths:
+			#print(i)
 			for j in range(self.winning_limit-1):
 				#print(i[j], i[j+1])
 				if (i[j] == i[j+1]) and (i[j]!= 'Vuoto'):
