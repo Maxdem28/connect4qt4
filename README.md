@@ -5,8 +5,8 @@ Requirements:
 Python2
 PyQt4
 OR
-PyQt5 + qt_packports
+PyQt5 + qt_packport
 
 ```console
-user@pc:~$ pip2 install PyQt5 qt_backports
+user@pc:~$ pip2 install PyQt5 qt_backport
 ```
